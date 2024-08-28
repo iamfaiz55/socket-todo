@@ -1,6 +1,7 @@
 const express = require("express")
 const mongoose = require("mongoose")
 const cors = require("cors")
+const path = require("path")
 const cookieparser = require("cookie-parser")
 const { app, httpServer } = require("./socket/socket")
 
@@ -25,7 +26,8 @@ app.use("/api/todo", require("./routers/todoRoutes"))
 
 
 app.use("*", (req, res)=> {
-    res.status(404).json({message:"Resoure Not Found"})
+    // res.status(404).json({message:"Resoure Not Found"})
+    res.sendFile(path.join(__dirname, "dist", "index.html"))
 })
 
 app.use((err, req, res, next)=>{
