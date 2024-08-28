@@ -34,3 +34,8 @@ exports.deleteTodo =asyncHandler( async (req, res) => {
     res.status(200).json({ message: "Todo delete Success" });
 
 })
+exports.completeTodo = asyncHandler(async(req, res)=> {
+    const {id}=req.params
+  await Todo.findByIdAndUpdate(id, {complete:true})
+  res.json({message: "Todo Complete Success"})
+})
